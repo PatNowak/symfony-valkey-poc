@@ -25,8 +25,6 @@ class Kernel extends BaseKernel
             new SecurityBundle(),
             new TwigBundle(),
             new MonologBundle(),
-            new DoctrineBundle(),
-            new DoctrineMigrationsBundle(),
             new SncRedisBundle(),
             new WebProfilerBundle(),
             new DebugBundle(),

@@ -20,10 +20,10 @@ case "$1" in
     ;;
 
     "6.4")
-      docker exec -it symfony7-php-apache-1 bash -c "cd app && composer require symfony/lock ^6.4"
+      docker exec -it symfony-valkey-poc-php-apache-1 bash -c "cd app && composer require symfony/lock ^6.4"
     ;;
 
     "7.2")
-      docker exec -it symfony7-php-apache-1 bash -c "cd app && composer require symfony/lock ^7.2"
+      docker exec -it symfony-valkey-poc-php-apache-1 bash -c "cd app && composer require symfony/lock ^7.2"
     ;;
 esac
