@@ -1,54 +1,19 @@
-# Docker-Symfony
-[Source code](https://github.com/Mugen0815/symfony7)
+# Symfony 7 and Valkey issues
 
-[Dockerhub](https://hub.docker.com/r/mugen0815/symfony7)
+`symfony/lock` works perfectly fine with Redis and Valkey up to version 6.4.
+After that instead of using `eval`, it uses `evalSha`.
 
-![build image](https://github.com/Mugen0815/symfony7/actions/workflows/docker-image.yml/badge.svg)
+For Redis it's still fine, but not for Valkey.
 
-![Docker Image Version (latest by date)](https://img.shields.io/docker/v/mugen0815/symfony7)  
-![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/mugen0815/symfony7)  
-![Docker Pulls](https://img.shields.io/docker/pulls/mugen0815/symfony7)  
+## How to run it
 
+Make sure you have `git`, `docker` and `docker compose` installed and up to date.
+Then it should work like:
 
-Minimalistic Docker environment for Symfony 7(https://symfony.com/) 
-based on official php-apache-image (https://hub.docker.com/_/php/tags?name=apache)
-including:
-* Composer
-* Symfony-CLI
-* Symfony 7 Webapp
+```shell
+git clone git@github.com:PatNowak/symfony-valkey-poc.git
+cd symfony-valkey-poc
 
-with optional components via docker-compose:
-* MariaDB
-
-
-## Requirements
-* Linux or WSL2
-* Docker version 18.06 or later
-* (optional) Traefik 2
-
-
-## Components
-* Apache 2.4
-* PHP 8.2
-* Composer 2.6
-* Symfony-CLI
-* Symfony 7 Webapp
-* (optional) MariaDB 10.6
-
-
-## What it does
-On startup, creates a symfony 7.0 webapp (configurabale via env-var) using symfony-cli
-or calls 'composer install' if app already exists and vendor-folder is missing (for existing projects from git)
-
-
-## Setting up LOCAL environment
-1. git clone git@github.com:Mugen0815/symfony7.git
-2. cd symfony7
-3. docker compose up -d
-4. Go to http://localhost:8080
-
-
-## Building the image only
-1. git clone git@github.com:Mugen0815/symfony7.git
-2. cd symfony7
-3. docker build . --no-cache
+# to run valkey (by default we should have here symfony/lock 7.2)
+./app.sh valkey
+```
