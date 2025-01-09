@@ -8,10 +8,10 @@ case "$1" in
     ;;
 
     "redis")
-      docker-compose -f docker compose-redis.yml up -d
+      docker compose -f docker compose-redis.yml up -d
     ;;
     "valkey")
-      docker-compose -f docker compose-valkey.yml up -d
+      docker compose -f docker compose-valkey.yml up -d
     ;;
 
     "down")
