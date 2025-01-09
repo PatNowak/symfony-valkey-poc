@@ -3,18 +3,17 @@
 namespace App\Controller;
 
 use App\Service\LockService;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Component\Routing\Attribute\Route;
 
 class TestController
 {
-    #[Route('/', name: 'home_page')]
-    public function index(LockService $lockService): Response
+    #[Route('/', name: 'index')]
+    #[Template('index.html.twig')]
+    public function index(LockService $lockService): array
     {
         $lockService->createAndAcquireLockWithAutoRelease('mytest');
 
-        return new Response('Hello World!');
-//        dd($request);
+        return [];
     }
 }

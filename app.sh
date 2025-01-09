@@ -2,6 +2,11 @@
 
 # first argument
 case "$1" in
+    "status")
+      docker compose -f docker-compose-redis.yml ps -a
+      docker compose -f docker-compose-valkey.yml ps -a
+    ;;
+
     "redis")
       docker-compose -f docker-compose-redis.yml up -d
     ;;
@@ -16,5 +21,9 @@ case "$1" in
 
     "6.4")
       docker exec -it symfony7-php-apache-1 bash -c "cd app && composer require symfony/lock ^6.4"
+    ;;
+
+    "7.2")
+      docker exec -it symfony7-php-apache-1 bash -c "cd app && composer require symfony/lock ^7.2"
     ;;
 esac
