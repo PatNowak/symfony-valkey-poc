@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+    php-apache:
+        build:
+            context: .
+        environment:
+            - SYMFONY_PARAMS=${SYMFONY_PARAMS}
+        volumes:
+            - type: bind
+              source: ./src
+              target: /usr/src
+        security_opt:
+            - label:disable
+        ports:
+            - '8080:80'
+
+    cache:
+        image: redis:6.2.12
+        tty: true
+        stdin_open: true
+        ports:
+            - "6379"
+        security_opt:
+            - label:disable
