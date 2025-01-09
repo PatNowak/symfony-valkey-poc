@@ -1,0 +1,9 @@
+snc_redis:
+  clients:
+    # db 0: default (used for maintenance information, global locks). Named "MaintenanceLocks" in command sirvoy:redis:delete-keys
+    # this database should not be flushed with FLUSHDB unless jobs that requires locks has been stopped first!
+    default:
+      type: predis
+      alias: default
+      dsn: "%env(APP_REDIS_URI)%/0"
+      logging: "%kernel.debug%"
